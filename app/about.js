@@ -2,12 +2,14 @@ import { Pressable, ScrollView, Text } from "react-native";
 import { Link } from "expo-router";
 import { HomeIcon } from "../components/Icons";
 import { styled } from "nativewind";
+import { Screen } from "../components/Screen";
 
 export default function About() {
   const StyledPressable = styled(Pressable);
 
   return (
-    <ScrollView className="pt-24">
+    <Screen>
+    <ScrollView className="pt-24 bg-black">
       <Link asChild href="/">
         <StyledPressable className={`active:opacity-50`}>
           <HomeIcon />
@@ -81,5 +83,6 @@ export default function About() {
         mollit anim id est laborum."
       </Text>
     </ScrollView>
+    </Screen>
   );
 }

@@ -16,6 +16,7 @@ import { ActivityIndicator } from "react-native";
 import { Logo } from "./Logo";
 import { CircleInfoIcon } from "../components/Icons";
 import { styled } from "nativewind";
+import { Screen } from "./Screen";
 
 export function Main() {
   const [games, setGames] = useState([]);
@@ -29,17 +30,7 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <View style={{ marginBottom: 20 }}>
-        <Logo />
-      </View>
-
-      <Link asChild href="/about">
-        <StyledPressable className={`active:opacity-50`}>
-          <CircleInfoIcon />
-        </StyledPressable>
-      </Link>
-
+    <Screen className="bg-black">
       {games.length === 0 ? (
         <ActivityIndicator color={"#fff"} size={"large"} />
       ) : (
@@ -49,6 +40,6 @@ export function Main() {
           renderItem={({ item }) => <GameCard game={item} />}
         />
       )}
-    </View>
+    </Screen>
   );
 }
