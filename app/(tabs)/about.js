@@ -1,8 +1,8 @@
 import { Pressable, ScrollView, Text } from "react-native";
 import { Link } from "expo-router";
-import { HomeIcon } from "../components/Icons";
+import { HomeIcon } from "../../components/Icons";
 import { styled } from "nativewind";
-import { Screen } from "../components/Screen";
+import { Screen } from "../../components/Screen";
 
 export default function About() {
   const StyledPressable = styled(Pressable);
