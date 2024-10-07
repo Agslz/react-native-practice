@@ -1,10 +1,11 @@
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
 import { useLocalSearchParams } from "expo-router";
 import { Screen } from "../components/Screen";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { getGameDetails } from "../lib/metacritic";
+import { Score } from "../components/Score";
 
 export default function Detail() {
   const { gameslug } = useLocalSearchParams();
@@ -23,7 +24,7 @@ export default function Detail() {
           headerStyle: { backgroundColor: "#ffee00" },
           headerTintColor: "black",
           headerLeft: () => {},
-          headerTitle: "The Legend of Zelda",
+          headerTitle: gameInfo ? gameInfo.title : "Loading...",
           headerRight: () => {},
         }}
       />
@@ -33,9 +34,20 @@ export default function Detail() {
           <ActivityIndicator color={"#fff"} size={"large"} />
         ) : (
           <ScrollView>
-            <Text className="text-white font-bold mb-8 text-2xl">
-              Detalle del juego {gameslug}
-            </Text>
+            <View className="justify-center items-center text-center">
+              <Image
+                className="mb-4 rounded"
+                source={{uri: gameInfo.img}}
+                style={{ width: 215, height: 300}}
+              />
+              <Score score={gameInfo.score} maxScore={100}/>
+              <Text className="text-white text-center font-bold  text-xl">
+                {gameInfo.title}
+              </Text>
+              <Text className="text-white/70 mt-4 text-left font-bold mb-8 text-base">
+                {gameInfo.description}
+              </Text>
+            </View>
           </ScrollView>
         )}
       </View>
